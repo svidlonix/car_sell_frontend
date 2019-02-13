@@ -1,5 +1,6 @@
 <template>
   <layout>
+    <flash-message></flash-message>
     <div class='login-block mt-5 ml-5 mr-5'>
       <b-form @submit="onSubmit">
         <b-form-group id="exampleInputGroup1" label="Email address:" label-for="exampleInput1" description="We'll never share your email with anyone else.">
@@ -33,9 +34,9 @@
       }
     },
     methods: {
-      onSubmit (evt) {
+      async onSubmit (evt) {
         evt.preventDefault();
-        axios.post('http://localhost:3000/api/login',
+        var result = await axios.post('http://localhost:3000/api/login',
           {
             'user': {
               "email": evt.currentTarget.email.value,
@@ -48,11 +49,18 @@
         .then(function (response) {
           const token = response.data.token;
           localStorage.setItem('user-token', token);
-          location.replace(location.origin);
         })
        .catch(function (error) {
-         console.log(error.message);
-        })
+         return error;
+        });
+        if (result == undefined) {
+          debugger;
+          this.$router.push('/')
+          this.flashSuccess('Success Login');
+        } else {
+          this.flashError(result.message);
+        }
+        // this.flashError('Validation failed');
       }
     }
   }
@@ -60,6 +68,6 @@
 
 <style>
 .login-block {
-  text-align: left;
+  text-align: left; 
 }
 </style>
