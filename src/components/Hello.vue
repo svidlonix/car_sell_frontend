@@ -1,19 +1,31 @@
 <template>
   <layout>
     <flash-message></flash-message>
-    <div v-bind:key='advert' v-for='advert in adverts'>
-      <h3> {{advert}}</h3>
+    <div class='container'>
+      <div class='row'>
+        <div class='col-12 mt-5 mb-5'>
+          <h2>Adverts</h2>
+        </div>
+      </div>
+      <div v-bind:key='advert' v-for='advert in adverts'>
+        <div class='row'>
+          <advert v-bind:advert="advert"/>
+        </div>
+      </div>
     </div>
   </layout>
 </template>
 
 <script>
   import Layout from './layout/Layout.vue'
+  import Advert from './Advert.vue'
   import axios from 'axios'
 
   export default {
     components: {
-      layout: Layout
+      layout: Layout,
+      advert: Advert
+
     },
     data () {
       return {
