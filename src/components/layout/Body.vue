@@ -16,7 +16,6 @@ export default {
     background: rgb(72, 189, 224);
     border: 1px solid rgb(14, 219, 66);
     min-height: 638px;
-    margin-top: 150px;
     text-align: center;
   }
 </style>
