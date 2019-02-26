@@ -3,11 +3,12 @@
     <flash-message></flash-message>
     <div class='login-block mt-5 ml-5 mr-5'>
       <b-form @submit="onSubmit">
-        <b-form-group id="exampleInputGroup1" label="Email address:" label-for="exampleInput1" description="We'll never share your email with anyone else.">
+        <b-form-group id="exampleInputGroup1" label="Email address:">
           <b-form-input id="email" type="email" v-model="form.email" required placeholder="Enter email"/>
         </b-form-group>
-        <label class="mt-4" for="inlineFormInputGroupUsername2">Password</label>
-        <b-form-input id="password" type="password" v-model="form.password" required placeholder="Enter password"/>
+        <b-form-group id="exampleInputGroup2" label="Password:">
+          <b-form-input id="password" type="password" v-model="form.password" required placeholder="Enter password"/>
+        </b-form-group>
         <b-form-checkbox-group v-model="form.checked" id="exampleChecks">
           <b-form-checkbox class="mt-4">Remember me</b-form-checkbox>
         </b-form-checkbox-group>
@@ -28,33 +29,31 @@
     data () {
       return {
         form: {
-          email: '',
-          name: ''
+          email: ''
         }
       }
     },
+
     methods: {
       async onSubmit (evt) {
         evt.preventDefault();
         var result = await axios.post('http://localhost:3000/api/login',
           {
             'user': {
-              "email": evt.currentTarget.email.value,
+              'email': evt.currentTarget.email.value,
               // "firsdqt@first.com",
-              "password": evt.currentTarget.password.value
+              'password': evt.currentTarget.password.value
               // "111111"
             }
           }
         )
         .then(function (response) {
-          const token = response.data.token;
-          localStorage.setItem('user-token', token);
+          localStorage.setItem('user-token', response.data.token);
         })
        .catch(function (error) {
          return error;
         });
         if (result == undefined) {
-          debugger;
           this.$router.push('/')
           this.flashSuccess('Success Login');
         } else {
