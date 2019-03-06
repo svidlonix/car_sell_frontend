@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="row mb-4">
       <div class="col-6">
-        <img v-bind:src="'data:image/jpeg;base64,' + advert.main_picture_base64" />
+        <img class='picture' v-bind:src="'data:image/jpeg;base64,' + advert.picture" />
       </div>
       <div class="col-6 adventure-description">
         <h3>{{prepareType(advert.type)}} {{advert.brand_name}} {{advert.model_name}}</h3>
@@ -64,8 +64,11 @@
 </script>
 
 <style>
-.adventure-description{
-  text-align: left;
-}
+  .adventure-description{
+    text-align: left;
+  }
 
+  .picture {
+      width: 500px;
+  }
 </style>

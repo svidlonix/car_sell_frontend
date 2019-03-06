@@ -94,7 +94,6 @@
       },
 
       avatarSrc(form) {
-        debugger;
         if(form.avatar_decode == undefined) {
           return require('../assets/avatar-placeholder.gif');
         } else {
@@ -108,6 +107,5 @@
 <style scope>
   .upload_avatar {
     width: 300px;
-    height: 300px;
   }
 </style>
