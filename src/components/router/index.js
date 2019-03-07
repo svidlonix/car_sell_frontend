@@ -7,6 +7,7 @@ import Adverts from '../Adverts.vue'
 import Contacts from '../Contacts.vue'
 import LogIn from '../Login.vue'
 import Profile from '../Profile.vue'
+import AdvertForm from '../AdvertForm.vue'
 
 Vue.use(Router)
 
@@ -18,6 +19,7 @@ export default new Router({
     { path: '/contacts', component: Contacts },
     { path: '/login', component: LogIn },
     { path: '/faqs', component: Faqs },
-    { path: '/profile', component: Profile }
+    { path: '/profile', component: Profile },
+    { path: '/new_advert', component: AdvertForm }
   ]
 })

@@ -16,13 +16,17 @@
           <b-nav-item-dropdown class='ml-3 mr-3'>
             <template slot="button-content"><em>User</em></template>
             <div v-if='checkLoginUser()'>
-              <b-dropdown-item v-bind:href='profileLink()' >Profile</b-dropdown-item>
+              <b-dropdown-item href='/#/profile'>Profile</b-dropdown-item>
+              <b-dropdown-item href='/#/new_advert'>New Advert</b-dropdown-item>
               <b-dropdown-item v-on:click='signOut' href='#'>Signout</b-dropdown-item>
             </div>
             <div v-else>
               <b-dropdown-item href="/#/login">Login</b-dropdown-item>
             </div>
           </b-nav-item-dropdown>
+          <div v-if='checkLoginUser()'>
+            <b-img :src="avatar()" class='thumbnail' />
+          </div>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -35,10 +39,6 @@
     methods: {
       checkLoginUser() {
         return localStorage.getItem('user-token');
-      },
-
-      profileLink() {
-        return '/#/profile';
       },
 
       async signOut(){
@@ -54,7 +54,6 @@
        .catch(function (error) {
          return error;
         });
-        debugger;
         if (result == undefined) {
           localStorage.clear();
           this.$router.push('/')
@@ -63,6 +62,10 @@
           this.flashError(result.message);
         }
         // this.flashError('Validation failed');
+      },
+
+      avatar() {
+        return 'data:image/jpeg;base64,' + localStorage.getItem('user-avatar')
       }
     }
   }
@@ -79,5 +82,11 @@
 
   .nav-item  {
     font-size: 1.5em;
+  }
+
+  .thumbnail{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%
   }
 </style>

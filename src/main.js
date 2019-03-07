@@ -16,7 +16,6 @@ library.add(faTachometerAlt, faGasPump, faCogs, faRoad, faClock)
 Vue.use(BootstrapVue)
 Vue.use(VueResource)
 Vue.use(VueFlashMessage)
-
 new Vue({
   el: '#app',
   router: router,

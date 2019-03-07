@@ -49,6 +49,7 @@
         )
         .then(function (response) {
           localStorage.setItem('user-token', response.data.token);
+          localStorage.setItem('user-avatar', response.data.avatar);
         })
        .catch(function (error) {
          return error;

@@ -33,7 +33,7 @@
       }
     },
     async created () {
-      var result = await axios.get('http://localhost:3000/api/cars',
+      var result = await axios.get('http://localhost:3000/api/adverts',
         {
           headers: {'Authorization': localStorage.getItem('user-token')},
           params: {
